@@ -79,8 +79,8 @@ export default class PersonalPage extends Component {
                aria-controls="orderInfomations">个人订单</a>
           </li>
           <li role="presentation" data-toggle="tab">
-            <a className="list-group-item " role="presentation" data-toggle="collapse" href="#orderInfomations"
-               aria-controls="orderInfomations">Setting</a>
+            <a className="list-group-item " role="presentation" data-toggle="collapse" href="#setting"
+               aria-controls="orderInfomations" onClick={this._showUserInfo(this.state.username)}>Setting</a>
           </li>
         </ul>
       </div>
@@ -114,6 +114,34 @@ export default class PersonalPage extends Component {
                     <td>{this.state.password}</td>
                     <td>{this.state.phone}</td>
                     <td>{this.state.email}</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div className="collapse" id="setting">
+            <div className="well col-md-12 ">
+              <div className="table-responsive">
+                <table className="table">
+                  <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>username</th>
+                    <th>password</th>
+                    <th>phone</th>
+                    <th>email</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td className="col-md-3"><input name="name" type="text" className="form-control"
+                                                    value={this.state.username}/></td>
+                    <td className="col-md-3"><input className="form-control" value={this.state.password}/></td>
+                    <td className="col-md-3"><input className="form-control" value={this.state.phone}/></td>
+                    <td className="col-md-3"><input className="form-control" value={this.state.email}/></td>
                   </tr>
                   </tbody>
                 </table>
@@ -166,10 +194,10 @@ export default class PersonalPage extends Component {
               )}
               <div className="col-md-10 "></div>
               <div className="col-md-2 ">
-                <button type="button" className="btn btn-success" >确认付款</button>
+                <button type="button" className="btn btn-success">确认付款</button>
 
               </div>
-              
+
             </div>
           </div>
           <div role="tabpanel" className="tab-pane" id="messages">3</div>

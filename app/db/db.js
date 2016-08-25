@@ -6,6 +6,7 @@ module.exports = {
     if (mode === 'test') {
       url = 'mongodb://localhost/freetravel-test-db';
     }
+    console.log('--db connect success');
     mongoose.connect(url, callback);
   },
   close: function (callback) {
