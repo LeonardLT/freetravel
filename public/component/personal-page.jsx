@@ -3,6 +3,7 @@ import request from 'superagent';
 import {hashHistory} from 'react-router';
 import '../css/personal-page.css';
 
+
 export default class PersonalPage extends Component {
   constructor(props) {
     super(props);
@@ -11,7 +12,8 @@ export default class PersonalPage extends Component {
       password: '',
       phone: '',
       email: '',
-      userOrder: []
+      userOrder: [],
+      totalPayPrice: 0
     }
   }
 
@@ -36,7 +38,8 @@ export default class PersonalPage extends Component {
     request.post('/api/orders/userOrder')
       .end((err, data) => {
         this.setState({
-          userOrder: data.body
+          userOrder: data.body,
+          totalPayPrice: 0
         });
       });
 
@@ -51,6 +54,7 @@ export default class PersonalPage extends Component {
             userOrder: data.body
           });
           alert("删除成功");
+          this.state.totalPayPrice = 0;
         });
     };
   }
@@ -66,7 +70,14 @@ export default class PersonalPage extends Component {
     };
   }
 
+  _pay() {
+    alert("支付成功");
+    this.state.totalPayPrice = 0;
+    this.refs.buttonClose.click();
+  }
+
   render() {
+    this.state.totalPayPrice = 0;
     return <div className="container-fluid">
       <div className="col-md-2" role="tablist">
         <ul className="nav  nav-pills nav-stacked ">
@@ -153,50 +164,81 @@ export default class PersonalPage extends Component {
 
           <div className="collapse" id="orderInfomations">
             <div className="well  col-md-12 " id="userOrder">
-              {this.state.userOrder.map(order =>
-                <div className="media">
-                  <div className="media-left  media-middle">
-                    <img className="img-order" src={"../images/goods/" + order.orderImgName + ".jpg"} alt="加载失败"/>
+              {
+
+                this.state.userOrder.map(order =>
+                  <div className="media">
+                    <div className="media-left  media-middle">
+                      <img className="img-order" src={"../images/goods/" + order.orderImgName + ".jpg"} alt="加载失败"/>
+                    </div>
+                    <div className="media-body">
+                      <hr/>
+                      <table className="table">
+                        <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>P-Id</th>
+                          <th>Price</th>
+                          <th>Name</th>
+                          <th>Phone</th>
+                          <th>Address</th>
+                          <th>OtherMessage</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                          <td key={order._id}>1</td>
+                          <td>{order.orderProductId}</td>
+                          <td>{order.orderPrice}</td>
+                          <td>{order.name}</td>
+                          <td>{order.phone}</td>
+                          <td>{order.address}</td>
+                          <td>{order.otherMessage}</td>
+                          <div className="hidden">{
+                            this.state.totalPayPrice += order.orderPrice}</div>
+                        </tr>
+                        </tbody>
+                      </table>
+                      <div className="col-md-10"></div>
+                      <div className="col-md-2">
+                        <button type="button" className="btn btn-danger" onClick={this._deleteOrder(order._id)}>删除
+                        </button>
+                      </div>
+                    </div>
+
                   </div>
-                  <div className="media-body">
-                    <hr/>
-                    <table className="table">
-                      <thead>
-                      <tr>
-                        <th>#</th>
-                        <th>P-Id</th>
-                        <th>Price</th>
-                        <th>Name</th>
-                        <th>Phone</th>
-                        <th>Address</th>
-                        <th>OtherMessage</th>
-                      </tr>
-                      </thead>
-                      <tbody>
-                      <tr>
-                        <td key={order._id}>1</td>
-                        <td>{order.orderProductId}</td>
-                        <td>{order.orderPrice}</td>
-                        <td>{order.name}</td>
-                        <td>{order.phone}</td>
-                        <td>{order.address}</td>
-                        <td>{order.otherMessage}</td>
-                      </tr>
-                      </tbody>
-                    </table>
-                    <div className="col-md-10"></div>
-                    <div className="col-md-2">
-                      <button type="button" className="btn btn-danger" onClick={this._deleteOrder(order._id)}>删除
+                )}
+              <div className="col-md-10 ">
+              </div>
+              <div className="col-md-2">
+                <hr/>
+
+                <div>总金额:{this.state.totalPayPrice}</div>
+                <hr/>
+                <button type="button" className="btn btn-success btn-pay" data-toggle="modal" data-target="#myModal"> 支付
+                </button>
+              </div>
+
+              <div className="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div className="modal-dialog" role="document">
+                  <div className="modal-content">
+                    <div className="modal-header">
+                      <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                      <h4 className="modal-title" id="myModalLabel">确认订单</h4>
+                    </div>
+                    <div className="modal-body">
+                      总金额:{this.state.totalPayPrice}
+                    </div>
+                    <div className="modal-footer">
+                      <button ref="buttonClose" type="button" className="btn btn-default" data-dismiss="modal">Close
                       </button>
+                      <button type="button" className="btn btn-primary" onClick={this._pay.bind(this)}>确认支付</button>
                     </div>
                   </div>
                 </div>
-              )}
-              <div className="col-md-10 "></div>
-              <div className="col-md-2 ">
-                <button type="button" className="btn btn-success">确认付款</button>
-
               </div>
+
 
             </div>
           </div>
@@ -208,7 +250,9 @@ export default class PersonalPage extends Component {
       </div>
 
 
-    </div>
+    </div>;
 
   }
 }
+
+

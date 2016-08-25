@@ -1,7 +1,7 @@
 import async from 'async';
-import db from './db';
-import {Product} from './schema';
-import productData from '../product.json';
+import db from '../app/db/db';
+import {Product} from '../app/db/schema';
+import productData from './initData/product.json';
 
 
 async.series([

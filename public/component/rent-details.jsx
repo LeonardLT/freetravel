@@ -70,8 +70,10 @@ class GoodsDetails extends React.Component {
         }
         if (res.statusCode === 201) {
           alert("预约成功!");
+          this.refs.buttonClose.click();
         }
       });
+    this.ref.closeButton.click();
   }
 
   _nameOnChange(event) {
@@ -143,7 +145,7 @@ class GoodsDetails extends React.Component {
                       <div className="modal-dialog" role="document">
                         <div className="modal-content">
                           <div className="modal-header">
-                            <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span
+                            <button  type="button" className="close" data-dismiss="modal" aria-label="Close"><span
                               aria-hidden="true">&times;</span></button>
                             <h4 className="modal-title" id="exampleModalLabel">确认订单</h4>
                           </div>
@@ -180,7 +182,7 @@ class GoodsDetails extends React.Component {
                             </form>
                           </div>
                           <div className="modal-footer">
-                            <button ref="closeButton" type="button" className="btn btn-default" data-dismiss="modal">
+                            <button ref="buttonClose" type="button" className="btn btn-default" data-dismiss="modal">
                               Close
                             </button>
                             <input type="submit" value="确认租用" className="btn btn-primary"/>
