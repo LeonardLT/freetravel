@@ -91,7 +91,7 @@ export default class PersonalPage extends Component {
           </li>
           <li role="presentation" data-toggle="tab">
             <a className="list-group-item " role="presentation" data-toggle="collapse" href="#setting"
-               aria-controls="orderInfomations" onClick={this._showUserInfo(this.state.username)}>Setting</a>
+               aria-controls="orderInfomations" onClick={this._showUserInfo(this.state.username)}>修改个人信息</a>
           </li>
         </ul>
       </div>
@@ -149,10 +149,10 @@ export default class PersonalPage extends Component {
                   <tr>
                     <td>1</td>
                     <td className="col-md-3"><input name="name" type="text" className="form-control"
-                                                    value={this.state.username}/></td>
-                    <td className="col-md-3"><input className="form-control" value={this.state.password}/></td>
-                    <td className="col-md-3"><input className="form-control" value={this.state.phone}/></td>
-                    <td className="col-md-3"><input className="form-control" value={this.state.email}/></td>
+                                                    placeholder={this.state.username}/></td>
+                    <td className="col-md-3"><input className="form-control" placeholder={this.state.password}/></td>
+                    <td className="col-md-3"><input className="form-control" placeholder={this.state.phone}/></td>
+                    <td className="col-md-3"><input className="form-control" placeholder={this.state.email}/></td>
                   </tr>
                   </tbody>
                 </table>
@@ -228,6 +228,10 @@ export default class PersonalPage extends Component {
                       <h4 className="modal-title" id="myModalLabel">确认订单</h4>
                     </div>
                     <div className="modal-body">
+                      商品名称:{this.state.userOrder.map(order =>
+                      <div>
+                        {order.orderProductName}
+                      </div>)}
                       总金额:{this.state.totalPayPrice}
                     </div>
                     <div className="modal-footer">

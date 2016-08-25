@@ -17,9 +17,9 @@ class Nav extends React.Component {
           <ul className="nav-tabs nav-ul">
             <li className="li"><Link to="/index-rent">首页</Link></li>
             <li className="li"><Link to="/rent">出租租赁</Link></li>
-            <li className="li"><Link to="#">个性服务</Link></li>
-            <li className="li"><Link to="#">驴友匹配</Link></li>
-            <li className="li"><Link to="#">一站到底</Link></li>
+            <li className="li"><a disabled="disabled">敬请期待</a></li>
+            <li className="li"><a disabled="disabled">敬请期待</a></li>
+            <li className="li"><a disabled="disabled">敬请期待</a></li>
             <li className="li"><Link to="/personalPage">个人中心</Link></li>
           </ul>
         </div>

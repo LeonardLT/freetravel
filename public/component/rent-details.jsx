@@ -54,7 +54,7 @@ class GoodsDetails extends React.Component {
         address: this.state.address,
         otherMessage: this.state.otherMessage,
         orderProductId: this.props.params.id,
-        orderProductName: this.state.product.name,
+        orderProductName: this.state.product.productName,
         orderImgName: this.state.product.imgName,
         orderPrice: this.state.product.price
       })
@@ -145,7 +145,7 @@ class GoodsDetails extends React.Component {
                       <div className="modal-dialog" role="document">
                         <div className="modal-content">
                           <div className="modal-header">
-                            <button  type="button" className="close" data-dismiss="modal" aria-label="Close"><span
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span
                               aria-hidden="true">&times;</span></button>
                             <h4 className="modal-title" id="exampleModalLabel">确认订单</h4>
                           </div>
