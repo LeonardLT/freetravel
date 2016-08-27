@@ -2,6 +2,8 @@ import React, {Component} from "react";
 import request from 'superagent';
 import {hashHistory} from 'react-router'
 require("../css/register.css");
+import {Link} from 'react-router';
+
 
 export default class Register extends Component {
   constructor(props) {
@@ -55,7 +57,7 @@ export default class Register extends Component {
                  onChange={this._onConfirmPasswordChange.bind(this)}/>
         </div>
         <input type="submit" value="注册" className="btn btn-primary"/>
-        <span>有账号?<a className="to-register">登陆 </a></span>
+        <span>有账号?<Link to="login" className="to-register">登陆 </Link></span>
       </div>
     </form>
   }
