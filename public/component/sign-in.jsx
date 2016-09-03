@@ -2,8 +2,6 @@ import React from 'react';
 import request from 'superagent';
 import {hashHistory} from 'react-router'
 import '../css/sign-in.css';
-import {Link} from 'react-router';
-
 
 
 export default class SignIn extends React.Component {
@@ -41,10 +39,10 @@ export default class SignIn extends React.Component {
         <div className="down-footer">
           <p className="footer-text">
                         <span className="pull-right">
-                            {/*<a className="setTextColor">忘记密码?</a>*/}
+                            <a className="setTextColor">忘记密码?</a>
                         </span>
             <span className="pull-right">
-                            <Link to="/register" className="setTextColor" >注册</Link>
+                            <a className="setTextColor">注册</a>
                             <input type="submit" value="登录" className="btn btn-primary"/>
                         </span>
           </p>

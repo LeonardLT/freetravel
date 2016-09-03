@@ -114,6 +114,8 @@ class GoodsDetails extends React.Component {
     const productData = this.state.product;
     return (
       <div className="goods-details">
+        {this.props.params.id}
+
         <div className="goods-header">
           <div className="left-pic">
             <div className="img-main-rent">

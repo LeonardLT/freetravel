@@ -230,8 +230,7 @@ export default class PersonalPage extends Component {
                     <div className="modal-body">
                       商品名称:{this.state.userOrder.map(order =>
                       <div>
-                        <div><li className="col-md-10">{order.orderProductName}</li><div>{order.orderPrice}</div></div>
-                        <hr/>
+                        {order.orderProductName}
                       </div>)}
                       总金额:{this.state.totalPayPrice}
                     </div>
